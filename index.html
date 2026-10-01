@@ -6,7 +6,7 @@
     <title>Privacy Policy — Email Reply Timer (WLAI Timer)</title>
     <meta
       name="description"
-      content="Privacy policy for the Email Reply Timer (WLAI Timer) Chrome extension: what data it accesses, how it is used, and the third-party services involved (ClickUp, OpenAI)."
+      content="Privacy policy for the Email Reply Timer (WLAI Timer) Chrome extension: what data it accesses, how it is used, and where it is sent."
     />
     <meta name="robots" content="index, follow" />
     <style>
@@ -37,14 +37,34 @@
     <p class="meta">
       Published as the privacy policy for the Chrome Web Store extension
       <strong>&ldquo;Email Reply Timer&rdquo;</strong> (also referred to as WLAI Timer).<br />
-      Effective Date: June 1, 2026 &middot; Developer: White Lotus AI
+      Effective Date: October 1, 2026 &middot; Applies to extension version 2.10.0 &middot;
+      Developer: White Lotus AI
     </p>
 
     <h2>Overview</h2>
     <p>
-      WLAI Timer is a Chrome extension designed for internal workplace productivity
-      use. The extension helps users track the amount of time spent working on emails
-      and, when the user chooses, record that time to ClickUp.
+      WLAI Timer is a Chrome extension for internal workplace productivity use at
+      White Lotus Bookkeeping. It times how long staff spend writing Gmail replies and,
+      when the user chooses, records that time against a task in the firm&rsquo;s own
+      White Lotus Tasks dashboard. It also provides a drawing (markup) layer that can be
+      placed over a page while the dashboard is screen recording. When the user switches
+      it on, it can also name the user&rsquo;s ChatGPT chats by client (see &ldquo;ChatGPT
+      Chat Names&rdquo; below).
+    </p>
+    <p>
+      The extension sends its data to one destination of its own: the firm&rsquo;s
+      dashboard, reachable at terminal.whitelotusbk.ai (and tasks.whitelotusbk.ai, the
+      former address for the same dashboard, which is being retired). It contains no
+      third-party API keys. The only other service it talks to is ChatGPT (chatgpt.com),
+      and only while the user has ChatGPT chat names switched on: it then reads and
+      renames that user&rsquo;s own chats from the user&rsquo;s ChatGPT tab. Nothing it
+      reads in ChatGPT is sent to the dashboard or anywhere else.
+    </p>
+    <p>
+      The extension does <strong>not</strong> capture the screen, a window, a tab, system
+      audio or the microphone. It holds no capture code and requests no capture
+      permissions. Screen recording is performed by the White Lotus Tasks dashboard in
+      its own browser tab; see &ldquo;Screen Markup and Recording&rdquo; below.
     </p>
     <p>
       This Privacy Policy explains what information the extension may access, how that
@@ -58,19 +78,23 @@
       necessary to provide its functionality, including:
     </p>
     <ul>
-      <li>The fact that a user has started or stopped working on an email-related task;</li>
+      <li>The fact that a user has started or stopped working on an email reply;</li>
       <li>Time-tracking information, such as start time, stop time, duration, and related metadata;</li>
-      <li>Information entered or selected by the user when submitting time to ClickUp;</li>
-      <li>Limited webpage or browser information necessary to detect when the extension should start, stop, or display the time-tracking interface;</li>
-      <li>Authentication, workspace, task, or project information made available through ClickUp or related integrations, if authorized by the user or organization;</li>
-      <li>The text of the email reply or thread the user is working on, where the user enables the AI summary feature (see &ldquo;OpenAI and AI Processing&rdquo; below).</li>
+      <li>The browser&rsquo;s time zone, sent with requests to the dashboard, and the local date of the work, sent with a time entry, so time is recorded against the correct working day;</li>
+      <li>Information entered or selected by the user when submitting time, such as the client, list, task and note;</li>
+      <li>Client, list and task names retrieved from the White Lotus Tasks dashboard so the user can choose where to log time;</li>
+      <li>The user&rsquo;s work email address and staff name, as returned by the dashboard when the browser is paired, so time is logged under the correct person;</li>
+      <li>Gmail compose contents, in two ways: a one-way hash of the subject, recipients and body text, used only to recognise the same draft again so the timer can resume (the hash cannot be reversed back into the email); and the text of the reply and its quoted thread, which is sent to the dashboard to produce a task summary (see &ldquo;Email Summaries&rdquo; below);</li>
+      <li>The address (URL) of the active tab, used only to decide whether the markup overlay can legitimately be placed on that page &mdash; browser and Web Store pages are skipped;</li>
+      <li>While markup mode is on and the optional all-sites permission has been granted: the ability to place the drawing overlay onto pages the user visits. The overlay draws on top of the page; the drawings exist only in that page and are never transmitted or saved anywhere;</li>
+      <li>While ChatGPT chat names is on: the firm&rsquo;s client names and abbreviations, retrieved from the dashboard to build chat titles; the user&rsquo;s ChatGPT chat list and the contents of their chats, read in the user&rsquo;s own ChatGPT tab only to work out which client a chat is about; and the sign-in token ChatGPT&rsquo;s own page uses, held in memory for those requests only (see &ldquo;ChatGPT Chat Names&rdquo; below).</li>
     </ul>
     <p>
       The extension is not intended to collect email contents for independent use by
       the developer. However, because the extension operates in connection with
       email-related workflows, it may technically interact with pages or interfaces
       where email-related information is displayed, and email text may be transmitted to
-      the third-party services described below in order to provide the extension&rsquo;s features.
+      the firm&rsquo;s own dashboard in order to provide the summary feature described below.
     </p>
 
     <h2>How Information Is Used</h2>
@@ -78,45 +102,159 @@
     <ul>
       <li>To operate the timer;</li>
       <li>To allow users to review, confirm, and submit tracked time;</li>
-      <li>To send user-approved time entries to ClickUp;</li>
-      <li>To generate an optional summary of the email being worked on, via OpenAI, for inclusion in the ClickUp record;</li>
+      <li>To send user-approved time entries to the White Lotus Tasks dashboard;</li>
+      <li>To generate a summary of the email being worked on, for inclusion in the task record;</li>
+      <li>To draw the markup overlay on the page the user is viewing, and to relay the overlay&rsquo;s Pause and Stop buttons back to the dashboard that owns the recording;</li>
+      <li>To name the user&rsquo;s ChatGPT chats by client, when the user switches this on;</li>
       <li>To maintain, troubleshoot, secure, and improve the extension;</li>
       <li>To comply with applicable legal, security, or platform requirements.</li>
     </ul>
     <p>The extension does not sell user data.</p>
 
-    <h2>OpenAI and AI Processing</h2>
+    <h2>Email Summaries</h2>
     <p>
-      When the AI summary feature is used, the text of the email reply or thread the
-      user is working on is transmitted to OpenAI (api.openai.com) to generate a short
-      summary. That summary is then attached to the corresponding ClickUp record.
+      When a time entry is saved successfully, the extension also sends the text of the
+      reply and the quoted thread it was written against to the firm&rsquo;s own
+      dashboard, which generates a short summary and attaches it to the task as a
+      comment. This happens as part of saving time; it is not a separate opt-in step, and
+      users should be aware that saving time against a task will normally attach a
+      summary of that email to the task record.
     </p>
     <p>
-      This information is subject to OpenAI&rsquo;s own terms and privacy policy. White
-      Lotus AI is not responsible for OpenAI&rsquo;s systems, security, privacy
-      practices, availability, data retention, or processing of information after it is
-      transmitted to OpenAI. Email text is sent to OpenAI only to provide the
-      summary feature and is not used for advertising, sale of data, or unrelated profiling.
-    </p>
-
-    <h2>ClickUp, OpenAI, and Third-Party Services</h2>
-    <p>
-      If a user records time to ClickUp, the information submitted is sent to ClickUp
-      and is subject to ClickUp&rsquo;s own terms, privacy policy, permissions, and
-      account settings.
+      The text sent is limited to the compose window&rsquo;s visible body text, truncated
+      to 6,000 characters. Nothing is sent when the reply is too short to summarise, and
+      nothing is sent for a save that could not reach the server and was queued offline.
+      The email text is not stored by the extension &mdash; it is held in memory only for
+      the length of the request.
     </p>
     <p>
-      White Lotus AI is not responsible for the systems, security, privacy practices,
-      availability, data retention, or processing of information by ClickUp, OpenAI, or
-      any other third-party service after it is submitted to those services.
+      The summary is produced server-side using the firm&rsquo;s existing AI provider
+      account. The extension itself holds no AI credentials and does not contact any AI
+      provider directly. Email text is used only to produce that summary. It is not used
+      for advertising, sale of data, or unrelated profiling.
     </p>
 
-    <h2>Data Storage and Transmission</h2>
+    <h2>Screen Markup and Recording</h2>
     <p>
-      The extension may store limited operational data locally in the user&rsquo;s
-      browser or transmit information to authorized services as needed for the extension
-      to function.
+      Screen recording is started and stopped from the Record button in the White Lotus
+      Tasks dashboard, and the recording is performed by that dashboard page. The browser
+      shows its own picker there, so the user chooses precisely which screen, window or
+      tab is shared, and the browser indicates recording while it is active.
     </p>
+    <p>
+      This extension&rsquo;s only role is the markup layer: a drawing overlay it can place
+      on a <em>different</em> tab, which a web page cannot do for itself. The overlay draws
+      locally in the page, keeps its strokes only in that page&rsquo;s memory, and discards
+      them when markup is closed. Nothing drawn is uploaded, stored or transmitted by the
+      extension. The overlay&rsquo;s Pause and Stop buttons send only a command back to the
+      dashboard, and it displays the recording clock the dashboard reports.
+    </p>
+    <p>
+      Because the extension never touches the video stream, it neither sees nor uploads
+      the resulting clip. How a clip is captured, retained, discarded or stored is handled
+      entirely by the dashboard and the firm&rsquo;s arrangements for it.
+    </p>
+    <p>
+      Placing the overlay on pages other than Gmail and the dashboard requires the
+      optional all-sites permission described below, which the user grants explicitly and
+      can withdraw at any time.
+    </p>
+
+    <h2>ChatGPT Chat Names</h2>
+    <p>
+      This feature is off until the user ticks &ldquo;Name new ChatGPT chats by
+      client&rdquo; in the extension popup, which is also when Chrome asks the user to allow
+      chatgpt.com, if it has not been allowed already. While it is on, a ChatGPT chat the
+      user starts gets the client&rsquo;s abbreviation (or, for a client without one, its
+      name) in front of the title ChatGPT gave it, for example &ldquo;BIA - Budget
+      review&rdquo;. Older chats are renamed only from the &ldquo;Clean up old chats&rdquo;
+      panel, which shows every proposed name first and renames only the chats the user
+      ticks. A cleanup can be undone.
+    </p>
+    <p>
+      To find the client, the extension reads the user&rsquo;s chat list and chats in the
+      user&rsquo;s own ChatGPT tab, through the same requests ChatGPT&rsquo;s own page makes,
+      signed in as the user. It looks at the client named in the chat&rsquo;s app calls (in
+      practice, calls to the firm&rsquo;s Dagny app) and at client names or abbreviations the
+      user typed; ChatGPT&rsquo;s written answers are not used. A chat with no client, or with
+      more than one, is left as it is. What
+      the extension sends as a result is the new title, to ChatGPT. No chat text, title or
+      ChatGPT credential is sent to the dashboard, to any AI provider, or anywhere else, and
+      the extension does not use ChatGPT data for any other purpose.
+    </p>
+    <p>
+      The sign-in token ChatGPT&rsquo;s page uses is held in memory for those requests and
+      is never stored or sent anywhere but chatgpt.com. Chats stay in the user&rsquo;s
+      ChatGPT account, subject to OpenAI&rsquo;s own terms and the firm&rsquo;s ChatGPT
+      workspace settings; the extension changes only their titles. Unticking the box stops
+      the feature and removes the extension&rsquo;s script from chatgpt.com.
+    </p>
+
+    <h2>Browser Permissions the Extension Requests</h2>
+    <ul>
+      <li><strong>Storage and alarms</strong> &mdash; to keep the pairing credential, cached
+        task lists, local history and the retry queue, and to retry unsent saves on a timer;</li>
+      <li><strong>Gmail (mail.google.com)</strong> &mdash; the timer runs only on Gmail; this
+        is where the compose window is detected and the timer badge is shown;</li>
+      <li><strong>White Lotus Terminal (terminal.whitelotusbk.ai, and its former address
+        tasks.whitelotusbk.ai)</strong> &mdash; the dashboard the extension sends its data
+        to, and the page permitted to pair the browser and to switch markup on. Both names
+        are listed only so the extension keeps working across the address change; they are
+        the same dashboard, and the old one is being retired;</li>
+      <li><strong>Tabs and scripting</strong> &mdash; to place the markup overlay on the tab
+        the user is looking at, and to check a tab&rsquo;s address first so the overlay is not
+        attempted on browser-internal pages; and, while ChatGPT chat names is on, to place the
+        chat-naming script on chatgpt.com and open its cleanup panel there;</li>
+      <li><strong>Optional: access to all sites</strong> &mdash; requested only when the user
+        ticks &ldquo;Let markup draw on any page&rdquo; in the extension popup, and used only to
+        place the drawing overlay. Declining it limits markup to Gmail and the dashboard.
+        Unticking the box withdraws it immediately;</li>
+      <li><strong>Optional: chatgpt.com</strong> &mdash; requested only when the user ticks
+        &ldquo;Name new ChatGPT chats by client&rdquo;, and used only to read and rename that
+        user&rsquo;s own chats as described above. Unticking the box withdraws it, unless the
+        all-sites markup permission, which also covers chatgpt.com, has been granted.</li>
+    </ul>
+
+    <h2>Authentication</h2>
+    <p>
+      Each browser is paired once with the dashboard, where the user signs in through
+      the firm&rsquo;s single sign-on. The browser then holds a personal access token
+      stored locally in the browser&rsquo;s extension storage. That token identifies the
+      user to the dashboard so time is recorded under the correct person, and it can be
+      revoked at any time from the dashboard&rsquo;s Settings page, which immediately
+      ends that browser&rsquo;s access. Disconnecting from the extension popup also
+      removes the token and the cached task data from that browser. Until a browser is
+      paired, the timer does not run at all.
+    </p>
+
+    <h2>Third-Party Services</h2>
+    <p>
+      Data submitted by the extension is sent to the White Lotus Tasks dashboard
+      operated by White Lotus AI. Onward processing by the firm&rsquo;s own service
+      providers (for example, cloud hosting, file storage and AI summarisation) is
+      governed by the firm&rsquo;s arrangements with those providers.
+    </p>
+    <p>
+      While ChatGPT chat names is on, the extension also calls ChatGPT (chatgpt.com,
+      operated by OpenAI) under the user&rsquo;s own ChatGPT account, to read the
+      user&rsquo;s chats and to change their titles. It sends ChatGPT nothing else, and
+      nothing from ChatGPT reaches the dashboard.
+    </p>
+
+    <h2>What the Extension Stores in the Browser</h2>
+    <p>
+      All of the following is held locally in the browser&rsquo;s extension storage and is
+      removed when the extension is uninstalled:
+    </p>
+    <ul>
+      <li>The pairing token, dashboard address, and the paired user&rsquo;s email and staff name;</li>
+      <li>Cached client, list and task names, refreshed roughly every ten minutes and cleared on disconnect or via Refresh in the popup;</li>
+      <li>Time entries that could not be sent yet, so nothing is lost when the network drops. Each carries its task, minutes, note and date, retries automatically, and is given up on after seven days rather than retried forever;</li>
+      <li>A local history of the most recent 100 recorded sessions (duration, note, client / list / task names, the paired email, and whether it synced), shown in the popup and clearable there with &ldquo;Clear history&rdquo;;</li>
+      <li>Parked draft timings: a one-way hash per draft plus the elapsed time, kept up to seven days so reopening a draft resumes its count. No email text is stored;</li>
+      <li>While markup is on, session-only state: the recording clock reported by the dashboard, whether it is paused, and any pending Pause/Stop command. This is cleared when the browser closes;</li>
+      <li>For ChatGPT chat names: the on/off setting and when it was switched on; cached client names and abbreviations (cleared like the other cached names); for each chat the extension renamed, the chat&rsquo;s identifier, its old and new title, the client abbreviation used and when, so the rename can be undone; a short marker for chats it looked at and left as they were; and a one-line status shown in the popup. While the feature is in use, entries older than 90 days are dropped. No chat text and no ChatGPT credentials are stored.</li>
+    </ul>
     <p>
       White Lotus AI uses commercially reasonable efforts to handle information
       securely, but no software, browser extension, network, or third-party service can
@@ -133,24 +271,30 @@
 
     <h2>User Control</h2>
     <p>
-      Users control when they submit time entries to ClickUp. Users may disable or
-      uninstall the extension through Chrome at any time. Organization administrators
-      may also manage access, permissions, and configuration depending on how the
-      extension is deployed.
+      Users control when they submit time entries; nothing is logged unless a task is
+      chosen and Save is pressed, and closing the confirmation without saving records
+      nothing. Users choose whether to grant the optional all-sites markup permission and
+      whether to switch on ChatGPT chat names, see every proposed name before a cleanup
+      renames older chats and can undo a cleanup, can
+      clear their local history, can disconnect the browser from the dashboard, and may
+      disable or uninstall the extension through Chrome at any time. Organization
+      administrators may also manage access, permissions, and configuration depending on
+      how the extension is deployed.
     </p>
 
     <h2>Data Retention</h2>
     <p>
       The extension retains only the information reasonably necessary for its operation,
-      troubleshooting, legal compliance, or legitimate business purposes. Data submitted
-      to ClickUp is retained according to ClickUp&rsquo;s policies and the settings of
-      the applicable ClickUp account or workspace.
+      troubleshooting, legal compliance, or legitimate business purposes. Local retention
+      limits are described under &ldquo;What the Extension Stores in the Browser&rdquo;. Data
+      submitted to the dashboard is retained according to the firm&rsquo;s own retention
+      practices and the settings of the applicable White Lotus Tasks workspace.
     </p>
 
     <h2>Organizational Use</h2>
     <p>
       If the extension is provided through an employer, client, or organization, that
-      organization may have access to time entries, activity records, ClickUp
+      organization may have access to time entries, activity records, task
       submissions, or related work information according to its own internal policies and
       systems. Users should contact their organization with questions about workplace
       monitoring, employee records, or internal data practices.
