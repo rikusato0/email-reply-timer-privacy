@@ -37,7 +37,7 @@
     <p class="meta">
       Published as the privacy policy for the Chrome Web Store extension
       <strong>&ldquo;Email Reply Timer&rdquo;</strong> (also referred to as WLAI Timer).<br />
-      Effective Date: October 1, 2026 &middot; Applies to extension version 2.10.3 &middot;
+      Effective Date: October 1, 2026 &middot; Applies to extension version 2.10.4 &middot;
       Developer: White Lotus AI
     </p>
 
@@ -176,10 +176,12 @@
     <p>
       To find the client, the extension reads the user&rsquo;s chat list and chats in the
       user&rsquo;s own ChatGPT tab, through the same requests ChatGPT&rsquo;s own page makes,
-      signed in as the user. It looks at the client named in the chat&rsquo;s app calls (in
-      practice, calls to the firm&rsquo;s Dagny app) and at client names or abbreviations the
-      user typed; ChatGPT&rsquo;s written answers are not used. A chat with no client, or with
-      more than one, is left as it is. What
+      signed in as the user. It reads the whole chat and looks, in this order, at the client
+      named in the chat&rsquo;s calls to the firm&rsquo;s Dagny app or in Dagny&rsquo;s answer about
+      which client an email address belongs to; at client names or abbreviations the user
+      typed; and, only if neither names a client, at a client abbreviation or full name
+      written in ChatGPT&rsquo;s answers. A chat with no client, or with more than one, is left
+      as it is. What
       the extension sends as a result is the new title, to ChatGPT. No chat text, title or
       ChatGPT credential is sent to the dashboard, to any AI provider, or anywhere else, and
       the extension does not use ChatGPT data for any other purpose.
