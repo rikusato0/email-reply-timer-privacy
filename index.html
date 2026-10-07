@@ -37,7 +37,7 @@
     <p class="meta">
       Published as the privacy policy for the Chrome Web Store extension
       <strong>&ldquo;Email Reply Timer&rdquo;</strong> (also referred to as WLAI Timer).<br />
-      Effective Date: October 1, 2026 &middot; Applies to extension version 2.10.2 &middot;
+      Effective Date: October 1, 2026 &middot; Applies to extension version 2.10.3 &middot;
       Developer: White Lotus AI
     </p>
 
@@ -168,8 +168,10 @@
       user starts gets the client&rsquo;s abbreviation (or, for a client without one, its
       name) in front of the title ChatGPT gave it, for example &ldquo;BIA - Budget
       review&rdquo;. Older chats are renamed only from the &ldquo;Clean up old chats&rdquo;
-      panel, which shows every proposed name first and renames only the chats the user
-      ticks. A cleanup can be undone.
+      panel, which looks at the user&rsquo;s 100 most recent chats, shows every proposed name
+      first and renames only the chats the user ticks. A cleanup can be undone. To stay
+      within ChatGPT&rsquo;s limits the extension makes one request every few seconds, and
+      if ChatGPT asks it to slow down it stops and sends nothing to ChatGPT for an hour.
     </p>
     <p>
       To find the client, the extension reads the user&rsquo;s chat list and chats in the
@@ -253,7 +255,7 @@
       <li>A local history of the most recent 100 recorded sessions (duration, note, client / list / task names, the paired email, and whether it synced), shown in the popup and clearable there with &ldquo;Clear history&rdquo;;</li>
       <li>Parked draft timings: a one-way hash per draft plus the elapsed time, kept up to seven days so reopening a draft resumes its count. No email text is stored;</li>
       <li>While markup is on, session-only state: the recording clock reported by the dashboard, whether it is paused, and any pending Pause/Stop command. This is cleared when the browser closes;</li>
-      <li>For ChatGPT chat names: the on/off setting and when it was switched on; cached client names and abbreviations (cleared like the other cached names); for each chat the extension renamed, the chat&rsquo;s identifier, its old and new title, the client abbreviation used and when, so the rename can be undone; a short marker for chats it looked at and left as they were; and a one-line status shown in the popup. While the feature is in use, entries older than 90 days are dropped. No chat text and no ChatGPT credentials are stored.</li>
+      <li>For ChatGPT chat names: the on/off setting and when it was switched on; cached client names and abbreviations (cleared like the other cached names); for each chat the extension renamed, the chat&rsquo;s identifier, its old and new title, the client abbreviation used and when, so the rename can be undone; a short marker for chats it looked at and left as they were; a one-line status shown in the popup; and, after ChatGPT asks it to slow down, the time until which it sends nothing. While the feature is in use, entries older than 90 days are dropped. No chat text and no ChatGPT credentials are stored.</li>
     </ul>
     <p>
       White Lotus AI uses commercially reasonable efforts to handle information
