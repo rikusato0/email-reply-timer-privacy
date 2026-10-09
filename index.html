@@ -37,7 +37,7 @@
     <p class="meta">
       Published as the privacy policy for the Chrome Web Store extension
       <strong>&ldquo;Email Reply Timer&rdquo;</strong> (also referred to as WLAI Timer).<br />
-      Effective Date: October 1, 2026 &middot; Applies to extension version 2.10.4 &middot;
+      Effective Date: October 1, 2026 &middot; Applies to extension version 2.11.0 &middot;
       Developer: White Lotus AI
     </p>
 
@@ -87,7 +87,7 @@
       <li>Gmail compose contents, in two ways: a one-way hash of the subject, recipients and body text, used only to recognise the same draft again so the timer can resume (the hash cannot be reversed back into the email); and the text of the reply and its quoted thread, which is sent to the dashboard to produce a task summary (see &ldquo;Email Summaries&rdquo; below);</li>
       <li>The address (URL) of the active tab, used only to decide whether the markup overlay can legitimately be placed on that page &mdash; browser and Web Store pages are skipped;</li>
       <li>While markup mode is on and the optional all-sites permission has been granted: the ability to place the drawing overlay onto pages the user visits. The overlay draws on top of the page; the drawings exist only in that page and are never transmitted or saved anywhere;</li>
-      <li>While ChatGPT chat names is on: the firm&rsquo;s client names and abbreviations, retrieved from the dashboard to build chat titles; the user&rsquo;s ChatGPT chat list and the contents of their chats, read in the user&rsquo;s own ChatGPT tab only to work out which client a chat is about; and the sign-in token ChatGPT&rsquo;s own page uses, held in memory for those requests only (see &ldquo;ChatGPT Chat Names&rdquo; below).</li>
+      <li>While ChatGPT chat names is on: the firm&rsquo;s client names and abbreviations, retrieved from the dashboard to build chat titles; the contents of a chat the user starts in ChatGPT and, when the user runs a cleanup, their recent chat list and the contents of up to ten chats at a time, read in the user&rsquo;s own ChatGPT tab only to work out which client a chat is about; from the ChatGPT page itself, the address of the open chat, its title in the chat list and whether the page is still changing, used only to notice a new chat and to wait until its answer is finished; and the sign-in token ChatGPT&rsquo;s own page uses, held in memory for those requests only (see &ldquo;ChatGPT Chat Names&rdquo; below).</li>
     </ul>
     <p>
       The extension is not intended to collect email contents for independent use by
@@ -165,18 +165,28 @@
       This feature is off until the user ticks &ldquo;Name new ChatGPT chats by
       client&rdquo; in the extension popup, which is also when Chrome asks the user to allow
       chatgpt.com, if it has not been allowed already. While it is on, a ChatGPT chat the
-      user starts gets the client&rsquo;s abbreviation (or, for a client without one, its
-      name) in front of the title ChatGPT gave it, for example &ldquo;BIA - Budget
-      review&rdquo;. Older chats are renamed only from the &ldquo;Clean up old chats&rdquo;
-      panel, which looks at the user&rsquo;s 100 most recent chats, shows every proposed name
-      first and renames only the chats the user ticks. A cleanup can be undone. To stay
-      within ChatGPT&rsquo;s limits the extension makes one request every few seconds, and
-      if ChatGPT asks it to slow down it stops and sends nothing to ChatGPT for an hour.
+      user starts in this browser gets the client&rsquo;s abbreviation (or, for a client
+      without one, its name) in front of the title ChatGPT gave it, for example &ldquo;BIA -
+      Budget review&rdquo;. The extension asks ChatGPT only when there is a new chat to name:
+      it notices the new chat from the ChatGPT page itself, reads that chat once after its
+      answer is finished and renames it once. No chat is read more than twice. Older chats,
+      and chats started on another device, are renamed only from the &ldquo;Clean up old
+      chats&rdquo; panel, which looks at the user&rsquo;s 100 most recent chats, reads up to
+      ten of them each time the user presses Find, shows every proposed name first and
+      renames only the chats the user ticks. A chat it has read is not read again unless the
+      chat has changed since, and a cleanup can be undone.
     </p>
     <p>
-      To find the client, the extension reads the user&rsquo;s chat list and chats in the
-      user&rsquo;s own ChatGPT tab, through the same requests ChatGPT&rsquo;s own page makes,
-      signed in as the user. It reads the whole chat and looks, in this order, at the client
+      ChatGPT limits how often an account may ask for its chats. The extension therefore
+      leaves at least ten seconds between two requests to ChatGPT and never sends more than
+      20 requests in an hour or 100 in a day, for automatic naming and cleanups together;
+      the popup shows the count. If ChatGPT asks it to slow down, it stops and sends
+      nothing to ChatGPT for a day.
+    </p>
+    <p>
+      To find the client, the extension reads the chat &mdash; and, for a cleanup, the
+      user&rsquo;s chat list &mdash; in the user&rsquo;s own ChatGPT tab, through the same
+      requests ChatGPT&rsquo;s own page makes, signed in as the user. It reads the whole chat and looks, in this order, at the client
       named in the chat&rsquo;s calls to the firm&rsquo;s Dagny app or in Dagny&rsquo;s answer about
       which client an email address belongs to; at client names or abbreviations the user
       typed; and, only if neither names a client, at a client abbreviation or full name
@@ -257,7 +267,7 @@
       <li>A local history of the most recent 100 recorded sessions (duration, note, client / list / task names, the paired email, and whether it synced), shown in the popup and clearable there with &ldquo;Clear history&rdquo;;</li>
       <li>Parked draft timings: a one-way hash per draft plus the elapsed time, kept up to seven days so reopening a draft resumes its count. No email text is stored;</li>
       <li>While markup is on, session-only state: the recording clock reported by the dashboard, whether it is paused, and any pending Pause/Stop command. This is cleared when the browser closes;</li>
-      <li>For ChatGPT chat names: the on/off setting and when it was switched on; cached client names and abbreviations (cleared like the other cached names); for each chat the extension renamed, the chat&rsquo;s identifier, its old and new title, the client abbreviation used and when, so the rename can be undone; a short marker for chats it looked at and left as they were; a one-line status shown in the popup; and, after ChatGPT asks it to slow down, the time until which it sends nothing. While the feature is in use, entries older than 90 days are dropped. No chat text and no ChatGPT credentials are stored.</li>
+      <li>For ChatGPT chat names: the on/off setting and when it was switched on; cached client names and abbreviations (cleared like the other cached names); for each chat the extension renamed, the chat&rsquo;s identifier, its old and new title, the client abbreviation used and when, so the rename can be undone; for a new chat waiting to be named, its identifier and when it is due; for a chat it has read, a short marker of what it found &mdash; the client, or that there was none &mdash; and when, so the chat is not read again; the times of its requests to ChatGPT in the last 24 hours, to keep within its limits and show the count in the popup; a one-line status shown in the popup; and, after ChatGPT asks it to slow down, the time until which it sends nothing. While the feature is in use, entries older than 90 days are dropped. No chat text and no ChatGPT credentials are stored.</li>
     </ul>
     <p>
       White Lotus AI uses commercially reasonable efforts to handle information
